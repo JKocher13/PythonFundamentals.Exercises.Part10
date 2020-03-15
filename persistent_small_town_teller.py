@@ -48,10 +48,12 @@ class Bank():
         print(round(self.accounts.get(account),2))
 
     def save_data(self):
-        pass
+        c = pickle_dumps(customers)
+        a = pickle_dumps(accounts)
 
     def load_pickle(self):
-        pass
+        customers = c
+        accounts = a
 
 class PersistenceUtils():
 
