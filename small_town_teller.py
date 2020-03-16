@@ -13,36 +13,40 @@ class Account:
         self.balance = balance
 
 
-
 class Bank():
-    customers = []
+    customers = {}
     accounts = {}
 
     def add_customer(self, customer):
         if customer.id not in self.customers:
             x = customer.id
-            self.customers.append(customer.id)
+            self.customers[customer.id] = customer
+
         else:
             print("Customer already exsists")
+
     def add_account(self, account):
         if account.number not in self.accounts:
             x = account.owner.id
             if x in self.customers:
-                self.accounts[account.number] = account.balance
+                self.accounts[account.number] = account
+                print(self.accounts)
+
     def remove_account(self, account):
         if account.number in self.accounts == True:
             pop(account.number)
 
     def deposit(self, account, depo_amount):
-        new_amount = self.accounts.get(account) + depo_amount
-        self.accounts[account]=new_amount
+        new_amount = self.accounts.get(account).balance + depo_amount
+        self.accounts[account].balance = new_amount
 
-    def withdrawal(self,account, withdraw_amount):
-        new_amount = self.accounts.get(account) - withdraw_amount
-        self.accounts[account] = new_amount
+    def withdrawal(self, account, withdraw_amount):
+        new_amount = self.accounts.get(account).balance - withdraw_amount
+        self.accounts[account].balance = new_amount
 
     def balance_inquiry(self, account):
-        print(round(self.accounts.get(account),2))
+        print(round(self.accounts.get(account).balance),2)
+
 
 
 
